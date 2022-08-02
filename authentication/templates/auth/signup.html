@@ -6,8 +6,16 @@
     <title>{% block title %}Signup{% endblock %}</title>
 </head>
 <body>
+{% if error %}
+      {% block message %}
+        <p style="background: red">
+        {{ error_message }}
+        </p>
+      {% endblock %}
+{% endif %}
+
 {% block content %}
-<form method="post">
+<form method="post">{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Signup">
 </form>

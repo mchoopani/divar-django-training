@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+</head>
+<body>
+{% block message %}
+    {% if error %}
+        <h1 style="color: red">{{ error_message }}</h1>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <label for="username_input">Username</label>
+        <input id="username_input" type="text" name="username" required>
+        <br>
+        <label for="password_input">Password</label>
+        <input id="password_input" type="password" name="password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+{% endblock %}
+
+</body>
+</html>
