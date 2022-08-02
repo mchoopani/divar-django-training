@@ -1,15 +1,17 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
+{#    <link rel="stylesheet" href="{% static 'style.css' %}">#}
     <meta charset="UTF-8">
     <title>{% block title %}Home page{% endblock %}</title>
 </head>
 <body>
 {% block content %}
-<p style="font-size: 50px">
-    سلام به سامانه انتخاب واحد مجازی خوش آمدید.
-</p>
+    <p class="welcome_p">
+        سلام به سامانه انتخاب واحد مجازی خوش آمدید.
+    </p>
 {% endblock %}
 </body>
 </html>

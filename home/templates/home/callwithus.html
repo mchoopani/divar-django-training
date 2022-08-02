@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}تماس با ما{% endblock %}</title>
+</head>
+<body>
+{% block message %}
+    {% if error %}
+        <h1 style="color: red">{{ error_message }}</h1>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% if not success %}
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="ارسال">
+        </form>
+    {% else %}
+        <div style="color: greenyellow">
+            درخواست شما ثبت شد.
+        </div>
+    {% endif %}
+
+{% endblock %}
+</body>
+</html>

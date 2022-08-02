@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -40,7 +40,7 @@ def login_(request):
     if request.method == 'GET':
         return render(request, 'auth/login.html', context={
             'error': request.GET.get('error', False),
-            'error_message': 'username or password is incorrect.'
+            'error_message': 'نام کاربری یا رمز عبور اشتباه وارد شده است.'
         })
     elif request.method == 'POST':
         user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
@@ -49,3 +49,8 @@ def login_(request):
             return redirect(request.GET.get('next', '/'))
         else:
             return redirect(reverse('login') + '?error=true')
+
+
+def logout_(request):
+    logout(request)
+    return redirect('index')

@@ -1,0 +1,22 @@
+.welcome_p{
+    font-size: 15px;
+    color: white;
+}
+*{
+    direction: rtl;
+}
+#navbar{
+    background: white;
+}
+body{
+    background: #607D8B;
+}
+#login_form{
+    width: 50%;
+    padding-right: 25%;
+    padding-top: 100px;
+}
+
+label{
+    color: white;
+}

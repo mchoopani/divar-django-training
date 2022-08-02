@@ -7,18 +7,18 @@
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <body>
-<div id="navbar" style="background: cornflowerblue; height: 30px">
-    <a id="home" href="{% url 'index' %}">Home</a>
-    {% block nav_items %}
-        {% if not request.user.is_authenticated %}
+<div id="navbar">
 
-            <a id="login" href="{% url 'login' %}">Login</a>
-            <a id="signup" href="{% url 'signup' %}">Signup</a>
-        {% else %}
-            <a id="logout" href="{% url 'logout' %}">Logout</a>
-        {% endif %}
+    <a id="home" href="{% url 'index' %}">خانه</a>
+    <a id="call" href="{% url 'call' %}">تماس با ما</a>
+    {% if not request.user.is_authenticated %}
 
-    {% endblock %}
+        <a id="login" href="{% url 'login' %}">ورود</a>
+        <a id="signup" href="{% url 'signup' %}">ثبت نام</a>
+    {% else %}
+        <a id="logout" href="{% url 'logout' %}">خروج</a>
+    {% endif %}
+
 </div>
 {% block message %}
 {% endblock %}
