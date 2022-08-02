@@ -7,8 +7,8 @@
 <body>
 <div id="navbar"  style="background: cornflowerblue; height: 30px">
     <a id="home" href="{% url 'index' %}">Home</a>
-    <a id="login">Login</a>
-    <a id="signup">Signup</a>
+    <a id="login" href="{% url 'login' %}">Login</a>
+    <a id="signup" href="{% url 'signup' %}">Signup</a>
 </div>
 {% block content %}
 
