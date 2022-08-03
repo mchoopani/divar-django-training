@@ -16,10 +16,10 @@ def call_with_us(request):
         if form.is_valid():
             try:
                 send_mail(
-                    form.cleaned_data['title'],
-                    f'{form.cleaned_data["email"]} says: \n{form.cleaned_data["text"]}',
-                    setting.EMAIL_HOST_USER,
-                    ['danial.erfanian@divar.ir'],
+                    subject=form.cleaned_data['title'],
+                    message=f'{form.cleaned_data["email"]} says: \n{form.cleaned_data["text"]}',
+                    from_email=setting.EMAIL_HOST_USER,
+                    recipient_list=setting.ADMINS_EMAILS,
                     fail_silently=False,
                 )
             except Exception as _:

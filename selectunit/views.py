@@ -21,13 +21,17 @@ def edit_profile(request):
     else:
         form = EditProfileForm(data=request.POST)
         if form.is_valid():
+
             first_name = form.cleaned_data['first_name']
             if first_name == '':
                 first_name = request.user.first_name
+
             last_name = form.cleaned_data['last_name']
             if last_name == '':
                 last_name = request.user.last_name
+
             User.objects.filter(username=request.user.username).update(first_name=first_name, last_name=last_name)
+
             return redirect('profile')
         else:
             render(request, 'selunit/edit_profile.html', context={
