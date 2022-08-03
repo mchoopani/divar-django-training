@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}All Units{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+    <div>
+     {% for unit in units %}
+         <div style="border-width: 1px; border: black; border-style: dashed; padding: 3px; width: 40%; margin-right: 30%">
+         <h4>
+             {{ unit.name }}
+         </h4>
+         <div>
+             {{ unit.college }}
+         </div>
+         <div>
+             {{ unit.first_day }} {% if unit.second_day %}و
+             {{ unit.second_day }}
+             {% endif %}
+         </div>
+         <div>
+             {{ unit.start_time }} - {{ unit.end_time }}
+         </div>
+         <div>
+             {{ unit.professor_name }}
+         </div>
+         </div>
+     {% endfor %}
+    </div>
+{% endblock %}
+</body>
+</html>
