@@ -10,9 +10,10 @@ def profile(request):
     return render(request, 'selunit/profile.html')
 
 
+@login_required(login_url='login')
 def edit_profile(request):
     if request.method == 'GET':
-        render(request, 'selunit/edit_profile.html', context={
+        return render(request, 'selunit/edit_profile.html', context={
             'form': EditProfileForm()
         })
     else:

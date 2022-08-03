@@ -7,7 +7,11 @@
 </head>
 <body>
 {% block content %}
+    <h3>تغییر اطلاعات نمایه</h3>
+    <form method="post">{% csrf_token %}
     {{ form }}
+    <input type="submit" value="اعمال">
+    </form>
 {% endblock %}
 </body>
 </html>

@@ -16,6 +16,6 @@ class SignupForm(forms.ModelForm):
         fields = ('username', 'first_name', 'last_name', 'email')
 
 
-class EditProfileForm(SignupForm):
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
+class EditProfileForm(forms.Form):
+    first_name = forms.CharField(label='نام', max_length=50, required=False)
+    last_name = forms.CharField(label='نام خانوادگی',max_length=50, required=False)
