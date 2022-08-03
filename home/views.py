@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
-
+import vahed_project.settings as setting
 from home.forms import CallWithMe
 
 
@@ -14,14 +14,20 @@ def call_with_us(request):
     elif request.method == 'POST':
         form = CallWithMe(data=request.POST)
         if form.is_valid():
-
-            send_mail(
-                form.cleaned_data['title'],
-                form.cleaned_data['text'],
-                'choopani.m81@gmail.com',
-                ['choopani.m81@gmail.com'],
-                fail_silently=False,
-            )
+            try:
+                send_mail(
+                    form.cleaned_data['title'],
+                    f'{form.cleaned_data["email"]} says: \n{form.cleaned_data["text"]}',
+                    setting.EMAIL_HOST_USER,
+                    ['danial.erfanian@divar.ir'],
+                    fail_silently=False,
+                )
+            except Exception as _:
+                return render(request, 'home/callwithus.html', context={
+                    'success': False,
+                    'error': True,
+                    'error_message': 'مشکلی در ارسال ایمیل وجود دارد.'
+                })
             return render(request, 'home/callwithus.html', context={
                 'success': True
             })
