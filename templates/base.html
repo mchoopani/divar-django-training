@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +16,30 @@
 
         <a id="login" href="{% url 'login' %}">ورود</a>
         <a id="signup" href="{% url 'signup' %}">ثبت نام</a>
+
     {% else %}
         <a id="profile" href="{% url 'profile' %}">پروفایل</a>
         <a id="panel" href="{% url 'panel' %}">پنل کاربری</a>
+        {% if request.user.is_prof %}
+            <a id="chance" href="{% url 'chance' %}">فرصت ها</a>
+        {% endif %}
         <a id="logout" href="{% url 'logout' %}">خروج</a>
     {% endif %}
 
+    <form method="post" action="{% url 'login' %}"
+          style="display: flex;flex-flow: row wrap;align-items: center; direction: ltr">{% csrf_token %}
+        <input type="text" name="name">
+        <input type="submit" value="جستجوی استاد">
+    </form>
 </div>
+{% if professors %}
+    <div>
+        {% for prof in professors %}
+            {{ prof.username }} - {{ prof.first_name }} {{ prof.last_name }}
+        {% endfor %}
+
+    </div>
+{% endif %}
 {% block message %}
 {% endblock %}
 {% block content %}

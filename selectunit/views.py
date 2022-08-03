@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required, permission_required
+from django.urls import reverse
+
 from authentication.models import CustomUser as User
 from django.shortcuts import render, redirect
 from .permissions import is_admin
 from authentication.forms import EditProfileForm
-from selectunit.forms import UnitForm
+from selectunit.forms import UnitForm, ChanceForm
 from selectunit.models import Unit
 
 
@@ -53,3 +55,22 @@ def all_units(request):
     return render(request, 'selunit/all_units.html', context={
         'units': Unit.objects.all()
     })
+
+
+@login_required(login_url='login')
+def chance(request):
+    if request.method == 'GET':
+        return render(request, 'selunit/chance.html', context={
+            'form': ChanceForm()
+        })
+    if request.method == 'POST':
+        form = ChanceForm(data=request.POST)
+        if form.is_valid():
+            chance_ = form.save()
+            chance_.prof = request.user
+            chance_.save()
+            return redirect(reverse('index'))
+        else:
+            return render(request, 'selunit/chance.html', context={
+                'form': form
+            })

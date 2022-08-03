@@ -8,13 +8,15 @@
 </head>
 <body>
 {% block content %}
-        <br>
+    <br>
 
     <div>
         <a href="{% url 'edit_profile' %}">ویرایش نمایه</a>
         <br>
         <br>
-        <img src="{{ request.user.photo.url }}" width="100" height="100">
+        {% if request.user.photo %}
+            <img src="{{ request.user.photo.url }}" width="100" height="100">
+        {% endif %}
         <h4>نام</h4>
         <h6>{{ request.user.first_name }} {{ request.user.last_name }}</h6>
 
