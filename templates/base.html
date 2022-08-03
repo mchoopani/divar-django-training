@@ -16,6 +16,7 @@
         <a id="login" href="{% url 'login' %}">ورود</a>
         <a id="signup" href="{% url 'signup' %}">ثبت نام</a>
     {% else %}
+        <a id="profile" href="{% url 'profile' %}">پروفایل</a>
         <a id="logout" href="{% url 'logout' %}">خروج</a>
     {% endif %}
 

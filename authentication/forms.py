@@ -14,3 +14,8 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
+
+
+class EditProfileForm(SignupForm):
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)

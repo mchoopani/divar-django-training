@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Profile{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+
+    <div>
+        <a href="{% url 'edit_profile' %}">ویرایش نمایه</a>
+        <h4>نام</h4>
+        <h6>{{ request.user.first_name }} {{ request.user.last_name }}</h6>
+
+        <h4>ایمیل</h4>
+        <h6>{{ request.user.email }}</h6>
+
+        <h4>نام کاربری</h4>
+        <h6>{{ request.user.username }}</h6>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -40,7 +40,7 @@ def login_(request):
     if request.method == 'GET':
         return render(request, 'auth/login.html', context={
             'error': request.GET.get('error', False),
-            'error_message': 'نام کاربری یا رمز عبور اشتباه وارد شده است.'
+            'error_message': request.GET.get('error_message')
         })
     elif request.method == 'POST':
         user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
@@ -48,7 +48,11 @@ def login_(request):
             login(request, user)
             return redirect(request.GET.get('next', '/'))
         else:
-            return redirect(reverse('login') + '?error=true')
+            if User.objects.filter(username=request.POST.get('username')).count() == 0:
+                message = 'نام کاربری اشتباه است.'
+            else:
+                message = 'گذرواژه نادرست است'
+            return redirect(reverse('login') + f'?error=true&error_message={message}')
 
 
 def logout_(request):
