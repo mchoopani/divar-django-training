@@ -1,3 +1,5 @@
 .idea/
 db.sqlite3
 __pycache__
+selectunit/migrations/*
+!selectunit/migrations/__init__.py
