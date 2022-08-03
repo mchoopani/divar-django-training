@@ -7,6 +7,10 @@ from authentication.models import CustomUser
 class SignupForm(forms.ModelForm):
     password1 = forms.CharField(label='رمز عبور', widget=forms.PasswordInput(), max_length=200)
     password2 = forms.CharField(label='تکرار رمز عبور', widget=forms.PasswordInput(), max_length=200)
+    group = forms.ChoiceField(label='سمت', choices=(
+        (0, 'استاد'),
+        (1, 'دانشجو'),
+    ))
 
     def clean(self):
         if self.cleaned_data['password1'] != self.cleaned_data['password2']:

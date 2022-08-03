@@ -11,6 +11,12 @@
     <p class="welcome_p">
         سلام به سامانه انتخاب واحد مجازی خوش آمدید.
     </p>
+    {% if request.user.is_authenticated %}
+    <h6>
+    شما به عنوان {% if is_prof %}استاد{% else %}دانشجو{% endif %} وارد شده اید.
+    </h6>
+    {% endif %}
+
 {% endblock %}
 </body>
 </html>

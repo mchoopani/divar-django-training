@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 from .models import CustomUser as User
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -21,6 +22,7 @@ def signup_(request):
                             email=form.cleaned_data['email'])
                 user.set_password(form.cleaned_data['password1'])
                 user.save()
+                user.groups.add(Group.objects.get(name=('Professor' if form.cleaned_data['group'] == '0' else 'Student')))
             except Exception as e:
                 return render(request, 'auth/signup.html', context={
                     'form': SignupForm(),
