@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from authentication.forms import EditProfileForm
+from selectunit.forms import UnitForm
 
 
 @login_required(login_url='login')
@@ -29,5 +30,22 @@ def edit_profile(request):
             return redirect('profile')
         else:
             render(request, 'selunit/edit_profile.html', context={
+                'form': form
+            })
+
+
+def unit_panel(request):
+    if request.method == 'GET':
+        return render(request, 'selunit/tasks.html', context={
+            'form': UnitForm()
+        })
+    elif request.method == 'POST':
+        form = UnitForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('panel')
+            
+        else:
+            return render(request, 'selunit/tasks.html', context={
                 'form': form
             })

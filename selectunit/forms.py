@@ -9,6 +9,19 @@ class CallWithMe(forms.Form):
 
 
 class UnitForm(forms.ModelForm):
+    start_time = forms.TimeField(label='ساعت شروع', input_formats=['%H:%M'])
+    end_time = forms.TimeField(label='ساعت پایان', input_formats=['%H:%M'])
+
     class Meta:
         model = Unit
         fields = '__all__'
+        labels = {
+            "name": "نام واحد",
+            "college": "نام دانشکده",
+            "end_time": "ساعت پایان",
+            "first_day": "روز اول",
+            "start_time": "ساعت شروع",
+            "professor_name": "نام استاد",
+            "second_day": "روز دوم",
+            "group_number": "شماره گروه",
+        }
