@@ -18,7 +18,3 @@ def markdownify(text):
     return markdown.markdown(text).strip()
 
 
-@register.simple_tag
-def is_professor(user):
-    from utils import is_professor as is_prof
-    return is_prof(user)

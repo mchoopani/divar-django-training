@@ -2,13 +2,10 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 import vahed_project.settings as setting
 from home.forms import CallWithMe
-from utils import is_professor
 
 
 def index(request):
-    return render(request, 'home/index.html', context={
-        'is_prof': is_professor(request.user)
-    })
+    return render(request, 'home/index.html')
 
 
 def call_with_us(request):

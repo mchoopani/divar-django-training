@@ -11,6 +11,7 @@
     <br>
 
     <div>
+        {% load markdownify %}
         <a href="{% url 'edit_profile' %}">ویرایش نمایه</a>
         <br>
         <br>
@@ -30,8 +31,15 @@
         <h6>{% get_gender request.user.gender %}</h6>
 
         <h4>زندگینامه</h4>
-        {% markdownify request.user.bio %}
+        {{ request.user.bio|markdownify }}
     </div>
+
+    {% if chances %}
+        <h4>فرصت ها</h4>
+    {% endif %}
+    {% for chance in chances %}
+        <h6>{{ chance.start_time }} - {{ chance.end_time }} : {{ chance.capacity }}</h6>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>

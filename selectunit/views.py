@@ -11,7 +11,9 @@ from selectunit.models import Unit
 
 @login_required(login_url='login')
 def profile(request):
-    return render(request, 'selunit/profile.html')
+    return render(request, 'selunit/profile.html', context={
+        'chances': request.user.chance_set.all() if request.user.is_prof() else []
+    })
 
 
 @login_required(login_url='login')
@@ -67,7 +69,7 @@ def chance(request):
         form = ChanceForm(data=request.POST)
         if form.is_valid():
             chance_ = form.save()
-            chance_.prof = request.user
+            chance_.professor = request.user
             chance_.save()
             return redirect(reverse('index'))
         else:

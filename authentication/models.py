@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-import utils
+from django.contrib.auth.models import AbstractUser, Group
 
 class CustomUser(AbstractUser):
     gender = models.CharField(choices=(
@@ -11,4 +10,8 @@ class CustomUser(AbstractUser):
     photo = models.ImageField()
 
     def is_prof(self):
-        return utils.is_professor(self)
+        prof_group = Group.objects.get(name='Professor')
+
+        if prof_group in self.groups.all():
+            return True
+        return False

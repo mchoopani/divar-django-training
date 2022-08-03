@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
-    'selectunit'
+    'selectunit',
+    'markdownify'
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,14 @@ AUTH_USER_MODEL = 'authentication.CustomUser'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MARKDOWNIFY = {
+  "default": {
+     "WHITELIST_TAGS": ["a", "p", "h1", ]
+  },
+
+  "alternative": {
+     "WHITELIST_TAGS": ["a", "p", ],
+     "MARKDOWN_EXTENSIONS": ["markdown.extensions.fenced_code", ]
+  }
+}
